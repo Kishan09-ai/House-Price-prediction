@@ -5,32 +5,19 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Prediction Result | AI House Value Predictor
-    </title>
-
+    <title>AI House Value Predictor | Kishan Singh</title>
 
     <style>
 
         * {
-
             box-sizing: border-box;
-
             margin: 0;
-
             padding: 0;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
-
 
         body {
 
@@ -39,100 +26,214 @@
             background:
                 linear-gradient(
                     135deg,
-                    #0f2027,
-                    #203a43,
-                    #2c5364
-                );
+                    rgba(15, 23, 60, 0.88),
+                    rgba(72, 32, 110, 0.90)
+                ),
+                url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=90");
 
-            display: flex;
+            background-size: cover;
 
-            justify-content: center;
+            background-position: center;
 
-            align-items: center;
+            background-attachment: fixed;
 
-            padding: 30px;
+            color: white;
 
-            color: #ffffff;
+            padding: 40px 20px;
         }
 
+        body::before {
 
-        .container {
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+
+            height: 350px;
+
+            background: rgba(102,126,234,0.25);
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            top: -100px;
+
+            left: -100px;
+
+            z-index: -1;
+        }
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+
+            height: 350px;
+
+            background: rgba(118,75,162,0.25);
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            bottom: -100px;
+
+            right: -100px;
+
+            z-index: -1;
+        }
+
+        .main-wrapper {
 
             width: 100%;
 
-            max-width: 850px;
+            max-width: 1050px;
 
-            background:
-                rgba(255, 255, 255, 0.08);
+            margin: auto;
 
-            backdrop-filter: blur(12px);
+            animation: pageLoad 0.8s ease;
+        }
 
-            border-radius: 20px;
+        @keyframes pageLoad {
 
-            padding: 40px;
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
 
-            box-shadow:
-                0 20px 50px
-                rgba(0, 0, 0, 0.4);
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .top-header {
 
             text-align: center;
+
+            margin-bottom: 30px;
         }
 
+        .project-badge {
 
-        .title {
+            display: inline-block;
 
-            font-size: 34px;
+            padding: 8px 18px;
+
+            border-radius: 30px;
+
+            background: rgba(255,255,255,0.13);
+
+            border: 1px solid rgba(255,255,255,0.25);
+
+            backdrop-filter: blur(10px);
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+        }
+
+        .top-header h1 {
+
+            font-size: 42px;
 
             margin-bottom: 10px;
+
+            text-shadow:
+                0 4px 15px rgba(0,0,0,0.3);
         }
 
-
-        .subtitle {
-
-            color: #d4e5ea;
-
-            margin-bottom: 30px;
-
-            font-size: 15px;
-        }
-
-
-        .prediction-card {
+        .top-header h1 span {
 
             background:
-                rgba(0, 0, 0, 0.2);
+                linear-gradient(
+                    90deg,
+                    #8ea2ff,
+                    #d6a7ff
+                );
 
-            border-radius: 15px;
+            -webkit-background-clip: text;
 
-            padding: 30px;
-
-            margin-bottom: 30px;
+            -webkit-text-fill-color: transparent;
         }
 
-
-        .prediction-label {
-
-            color: #c9dce2;
+        .top-header p {
 
             font-size: 16px;
 
-            margin-bottom: 12px;
+            color: rgba(255,255,255,0.78);
+
+            max-width: 650px;
+
+            margin: auto;
+
+            line-height: 1.6;
         }
 
+        .developer {
 
-        .prediction-value {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(102,126,234,0.95),
+                    rgba(118,75,162,0.95)
+                );
 
-            font-size: 45px;
+            border-radius: 20px;
+
+            padding: 20px 25px;
+
+            margin-bottom: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.25);
+
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+
+        .developer-info h2 {
+
+            font-size: 24px;
+
+            margin-bottom: 5px;
+        }
+
+        .developer-info p {
+
+            font-size: 14px;
+
+            opacity: 0.9;
+        }
+
+        .developer-name {
+
+            font-size: 28px;
 
             font-weight: bold;
 
-            color: #00c6ff;
-
-            word-break: break-word;
+            letter-spacing: 0.5px;
         }
 
+        .developer-icon {
 
-        .input-section {
+            font-size: 50px;
+        }
+
+        .features {
 
             display: grid;
 
@@ -144,128 +245,446 @@
             margin-bottom: 30px;
         }
 
-
-        .input-card {
+        .feature {
 
             background:
-                rgba(255, 255, 255, 0.08);
+                rgba(255,255,255,0.10);
 
-            border-radius: 12px;
+            border:
+                1px solid rgba(255,255,255,0.18);
 
-            padding: 20px;
-        }
+            backdrop-filter: blur(12px);
 
+            border-radius: 16px;
 
-        .input-card .label {
+            padding: 18px;
 
-            display: block;
-
-            color: #b9ced5;
-
-            font-size: 13px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .input-card .value {
-
-            display: block;
-
-            font-size: 20px;
-
-            font-weight: bold;
-        }
-
-
-        .button-group {
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 15px;
-
-            flex-wrap: wrap;
-        }
-
-
-        .btn {
-
-            display: inline-block;
-
-            text-decoration: none;
-
-            padding: 13px 25px;
-
-            border-radius: 10px;
-
-            font-weight: bold;
+            text-align: center;
 
             transition: 0.3s;
         }
 
+        .feature:hover {
 
-        .primary-btn {
-
-            background: #00c6ff;
-
-            color: white;
-        }
-
-
-        .secondary-btn {
+            transform: translateY(-5px);
 
             background:
-                rgba(255, 255, 255, 0.12);
-
-            color: white;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.2);
+                rgba(255,255,255,0.15);
         }
 
+        .feature-icon {
 
-        .btn:hover {
+            font-size: 30px;
 
-            transform: translateY(-2px);
+            margin-bottom: 8px;
         }
 
+        .feature h3 {
 
-        .footer {
+            font-size: 15px;
 
-            margin-top: 30px;
+            margin-bottom: 5px;
+        }
 
-            color: #aebfc5;
+        .feature p {
+
+            font-size: 12px;
+
+            color: rgba(255,255,255,0.7);
+        }
+
+        .content {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1.3fr;
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+        .info-panel {
+
+            background:
+                rgba(255,255,255,0.95);
+
+            color: #333;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.3);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .info-panel h2 {
+
+            color: #5a35b5;
+
+            margin-bottom: 12px;
+
+            font-size: 23px;
+        }
+
+        .info-panel > p {
+
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+        .model-box {
+
+            background: #f6f7ff;
+
+            border-left: 5px solid #667eea;
+
+            padding: 17px;
+
+            border-radius: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .model-box h3 {
+
+            color: #5a35b5;
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .model-box p {
+
+            color: #666;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .input-guide {
+
+            margin-top: 15px;
+        }
+
+        .input-guide h3 {
+
+            color: #444;
+
+            font-size: 17px;
+
+            margin-bottom: 12px;
+        }
+
+        .guide-item {
+
+            display: flex;
+
+            gap: 12px;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .guide-icon {
+
+            font-size: 20px;
+        }
+
+        .guide-item strong {
+
+            color: #444;
 
             font-size: 13px;
         }
 
+        .guide-item p {
 
-        @media (max-width: 700px) {
+            color: #777;
 
-            .input-section {
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+        .prediction-card {
+
+            background:
+                rgba(255,255,255,0.96);
+
+            color: #333;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .prediction-card h2 {
+
+            text-align: center;
+
+            color: #5a35b5;
+
+            margin-bottom: 7px;
+
+            font-size: 25px;
+        }
+
+        .prediction-subtitle {
+
+            text-align: center;
+
+            color: #888;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        label {
+
+            display: block;
+
+            margin-top: 17px;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #333;
+
+            font-size: 14px;
+        }
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+
+            width: 100%;
+
+            padding:
+                14px
+                14px
+                14px
+                45px;
+
+            border:
+                2px solid #e4e4e4;
+
+            border-radius: 12px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #fafafa;
+
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+
+            border-color: #667eea;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(102,126,234,0.12);
+        }
+
+        input[type="text"]::placeholder {
+
+            color: #aaa;
+        }
+
+        input[type="submit"] {
+
+            width: 100%;
+
+            margin-top: 28px;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #667eea,
+                    #764ba2
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 10px 25px
+                rgba(102,126,234,0.35);
+        }
+
+        input[type="submit"]:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(102,126,234,0.45);
+        }
+
+        input[type="submit"]:active {
+
+            transform:
+                translateY(0);
+        }
+
+        .notice {
+
+            margin-top: 20px;
+
+            padding: 13px;
+
+            background: #fff8e6;
+
+            border-left:
+                4px solid #f5b942;
+
+            border-radius: 9px;
+
+            color: #725d20;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            color:
+                rgba(255,255,255,0.65);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+        .footer strong {
+
+            color: white;
+
+            font-size: 15px;
+        }
+
+        @media (max-width: 850px) {
+
+            .content {
 
                 grid-template-columns: 1fr;
+
             }
 
+            .features {
 
-            .container {
+                grid-template-columns:
+                    repeat(3, 1fr);
 
-                padding: 25px;
             }
 
+        }
 
-            .title {
+        @media (max-width: 600px) {
 
-                font-size: 28px;
+            body {
+
+                padding: 25px 15px;
+
             }
 
+            .top-header h1 {
 
-            .prediction-value {
+                font-size: 30px;
 
-                font-size: 35px;
+            }
+
+            .features {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .developer {
+
+                text-align: center;
+
+                flex-direction: column;
+
+                gap: 12px;
+
+            }
+
+            .developer-name {
+
+                font-size: 24px;
+
+            }
+
+            .info-panel,
+            .prediction-card {
+
+                padding: 22px;
+
             }
 
         }
@@ -278,38 +697,111 @@
 <body>
 
 
-<div class="container">
+<div class="main-wrapper">
 
 
-    <h1 class="title">
+    <div class="top-header">
 
-        🏠 Prediction Result
+        <div class="project-badge">
 
-    </h1>
+            🤖 AI & ML PROJECT • HOUSE PRICE PREDICTION
+
+        </div>
+
+        <h1>
+
+            🏠 <span>House Value Predictor</span>
+
+        </h1>
+
+        <p>
+
+            An intelligent machine learning application that estimates
+            house values using property and neighborhood characteristics.
+
+        </p>
+
+    </div>
 
 
-    <p class="subtitle">
+    <div class="developer">
 
-        Your AI-powered house value prediction
+        <div class="developer-info">
 
-    </p>
+            <p>
+                🚀 DEVELOPED BY
+            </p>
+
+            <div class="developer-name">
+                Kishan Singh
+            </div>
+
+            <p>
+                Department of Computer Science & Engineering
+                (Artificial Intelligence & Machine Learning)
+            </p>
+
+        </div>
+
+        <div class="developer-icon">
+
+            👨‍💻
+
+        </div>
+
+    </div>
 
 
-    <div class="prediction-card">
+    <div class="features">
 
 
-        <div class="prediction-label">
+        <div class="feature">
 
-            Estimated House Value
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                Data-driven house value estimation
+            </p>
 
         </div>
 
 
-        <div class="prediction-value">
+        <div class="feature">
 
-            $<span id="prediction">
-                Loading...
-            </span>
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Smart Prediction
+            </h3>
+
+            <p>
+                Uses property characteristics
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Instant Result
+            </h3>
+
+            <p>
+                Get predictions within seconds
+            </p>
 
         </div>
 
@@ -317,96 +809,223 @@
     </div>
 
 
-    <div class="input-section">
+    <div class="content">
 
 
-        <div class="input-card">
-
-            <span class="label">
-
-                Average Rooms (RM)
-
-            </span>
+        <div class="info-panel">
 
 
-            <span
-                class="value"
-                id="rm"
-            >
+            <h2>
+                🧠 About This Project
+            </h2>
 
-                -
 
-            </span>
+            <p>
+
+                This application uses machine learning to estimate
+                the value of a house based on selected property
+                and neighborhood features.
+
+            </p>
+
+
+            <div class="model-box">
+
+                <h3>
+                    🔬 Prediction System
+                </h3>
+
+                <p>
+
+                    Enter the required values and the trained
+                    machine learning model will process the inputs
+                    and generate an estimated house value.
+
+                </p>
+
+            </div>
+
+
+            <div class="input-guide">
+
+                <h3>
+                    📋 Input Parameters
+                </h3>
+
+
+                <div class="guide-item">
+
+                    <div class="guide-icon">
+                        🏠
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            RM — Average Rooms
+                        </strong>
+
+                        <p>
+                            Average number of rooms per dwelling.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="guide-item">
+
+                    <div class="guide-icon">
+                        👨‍🏫
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            PT — Pupil-Teacher Ratio
+                        </strong>
+
+                        <p>
+                            Pupil-teacher ratio in the local area.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="guide-item">
+
+                    <div class="guide-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            LSTAT — Lower Status %
+                        </strong>
+
+                        <p>
+                            Percentage of lower-status population.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
 
         </div>
 
 
-        <div class="input-card">
-
-            <span class="label">
-
-                Property Tax (PT)
-
-            </span>
+        <div class="prediction-card">
 
 
-            <span
-                class="value"
-                id="pt"
-            >
+            <h2>
+                🔮 Make a Prediction
+            </h2>
 
-                -
 
-            </span>
+            <p class="prediction-subtitle">
+
+                Enter the property details below
+
+            </p>
+
+
+            <form action="/index" method="POST">
+
+
+                <label>
+                    🏠 RM — Average Rooms
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🏡
+                    </span>
+
+
+                    <input
+                        type="text"
+                        name="rm"
+                        placeholder="Example: 6.57"
+                        required
+                    >
+
+                </div>
+
+
+                <label>
+                    👨‍🏫 PT — Pupil-Teacher Ratio
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        📚
+                    </span>
+
+
+                    <input
+                        type="text"
+                        name="pt"
+                        placeholder="Example: 15.3"
+                        required
+                    >
+
+                </div>
+
+
+                <label>
+                    📊 LSTAT — Lower Status %
+                </label>
+
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        📈
+                    </span>
+
+
+                    <input
+                        type="text"
+                        name="lstat"
+                        placeholder="Example: 4.98"
+                        required
+                    >
+
+                </div>
+
+
+                <input
+                    type="submit"
+                    value="🔮 Predict House Value"
+                >
+
+
+            </form>
+
+
+            <div class="notice">
+
+                💡 <strong>Tip:</strong>
+                Enter accurate numerical values for better
+                model predictions. The result is an estimate
+                generated by the trained machine learning model.
+
+            </div>
+
 
         </div>
-
-
-        <div class="input-card">
-
-            <span class="label">
-
-                Lower Status (LSTAT)
-
-            </span>
-
-
-            <span
-                class="value"
-                id="lstat"
-            >
-
-                -
-
-            </span>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="button-group">
-
-
-        <a
-            href="index.html"
-            class="btn primary-btn"
-        >
-
-            🔄 New Prediction
-
-        </a>
-
-
-        <a
-            href="index.html"
-            class="btn secondary-btn"
-        >
-
-            ← Back to Home
-
-        </a>
 
 
     </div>
@@ -414,90 +1033,34 @@
 
     <div class="footer">
 
-        AI House Value Predictor | Kishan Singh
+        <p>
+
+            🚀 <strong>Kishan Singh</strong>
+
+        </p>
+
+        <p>
+
+            CSE — Artificial Intelligence & Machine Learning
+
+        </p>
+
+        <p>
+
+            🧠 Machine Learning • Data Science • AI
+
+        </p>
+
+        <p>
+
+            © 2026 Kishan Singh. All Rights Reserved.
+
+        </p>
 
     </div>
 
 
 </div>
-
-
-<script>
-
-
-const prediction =
-    localStorage.getItem("prediction");
-
-
-const rm =
-    localStorage.getItem("rm");
-
-
-const pt =
-    localStorage.getItem("pt");
-
-
-const lstat =
-    localStorage.getItem("lstat");
-
-
-
-if (prediction !== null) {
-
-    const numericPrediction =
-        Number(prediction);
-
-
-    if (!isNaN(numericPrediction)) {
-
-        document
-            .getElementById("prediction")
-            .textContent =
-            numericPrediction.toFixed(2);
-
-    }
-
-    else {
-
-        document
-            .getElementById("prediction")
-            .textContent =
-            prediction;
-
-    }
-
-}
-
-else {
-
-    document
-        .getElementById("prediction")
-        .textContent =
-        "N/A";
-
-}
-
-
-
-document
-    .getElementById("rm")
-    .textContent =
-    rm || "N/A";
-
-
-document
-    .getElementById("pt")
-    .textContent =
-    pt || "N/A";
-
-
-document
-    .getElementById("lstat")
-    .textContent =
-    lstat || "N/A";
-
-
-</script>
 
 
 </body>
