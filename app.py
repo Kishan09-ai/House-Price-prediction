@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import joblib
 
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__)
 
 model = joblib.load("boston_prediction")
 
@@ -20,11 +20,11 @@ def get_values():
         pt = float(request.form.get("pt"))
         lstat = float(request.form.get("lstat"))
 
-        predict_value = model.predict([[rm, pt, lstat]])
+        prediction = model.predict([[rm, pt, lstat]])
 
         return render_template(
             "result.html",
-            prediction=float(predict_value[0]),
+            prediction=float(prediction[0]),
             rm=rm,
             pt=pt,
             lstat=lstat
