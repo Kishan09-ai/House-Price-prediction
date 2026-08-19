@@ -1,695 +1,960 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI House Value Predictor by Kishan Singh">
+<title>AI House Value Predictor | Kishan Singh</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --dark: #0b1026;
+    --text: #20243a;
+    --muted: #6d7287;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7, 12, 40, 0.94),
+            rgba(66, 27, 100, 0.88)
+        ),
+        url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2200&q=90")
+        center / cover fixed;
+}
+
+/* Background glow */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: -1;
+    pointer-events: none;
+
+    animation: floatBlob 9s ease-in-out infinite alternate;
+}
+
+body::before {
+    width: 330px;
+    height: 330px;
+    background: rgba(102, 126, 234, 0.35);
+    top: -100px;
+    left: -90px;
+}
+
+body::after {
+    width: 380px;
+    height: 380px;
+    background: rgba(214, 102, 234, 0.22);
+    right: -130px;
+    bottom: -130px;
+    animation-delay: 2s;
+}
+
+@keyframes floatBlob {
+
+    to {
+        transform: translate(50px, 35px) scale(1.15);
+    }
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
 
-    <meta charset="UTF-8">
+@keyframes spin {
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-    <title>AI House Value Predictor | Kishan Singh</title>
+@keyframes shine {
 
-    <style>
+    to {
+        transform: translateX(120%);
+    }
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+@keyframes gradientMove {
 
-        body {
+    to {
+        background-position: 200% center;
+    }
+}
 
-            min-height: 100vh;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(15, 23, 60, 0.88),
-                    rgba(72, 32, 110, 0.90)
-                ),
-                url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=90");
+/* Main container */
 
-            background-size: cover;
+.container {
+    width: min(1120px, 92%);
+    margin: auto;
+}
 
-            background-position: center;
+.main {
+    padding: 34px 0 25px;
+    animation: fadeUp 0.8s ease;
+}
 
-            background-attachment: fixed;
 
-            color: white;
+/* Navigation */
 
-            padding: 40px 20px;
-        }
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        body::before {
+    padding: 13px 18px;
+    margin-bottom: 42px;
 
-            content: "";
+    border: 1px solid rgba(255, 255, 255, 0.16);
 
-            position: fixed;
+    background: rgba(255, 255, 255, 0.09);
 
-            width: 350px;
+    backdrop-filter: blur(15px);
 
-            height: 350px;
+    border-radius: 18px;
 
-            background: rgba(102,126,234,0.25);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.18);
+}
 
-            border-radius: 50%;
+.logo {
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
 
-            filter: blur(100px);
+.logo span {
+    color: #aebaff;
+}
 
-            top: -100px;
+.nav-links {
+    display: flex;
+    gap: 22px;
+}
 
-            left: -100px;
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
 
-            z-index: -1;
-        }
+    transition: 0.3s;
+}
 
-        body::after {
+.nav-links a:hover {
+    opacity: 1;
+    color: #b8c2ff;
+}
 
-            content: "";
 
-            position: fixed;
+/* Hero */
 
-            width: 350px;
+.hero {
+    text-align: center;
+    margin-bottom: 32px;
+}
 
-            height: 350px;
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
-            background: rgba(118,75,162,0.25);
+    padding: 9px 17px;
 
-            border-radius: 50%;
+    border-radius: 50px;
 
-            filter: blur(100px);
+    background: rgba(255, 255, 255, 0.11);
 
-            bottom: -100px;
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
 
-            right: -100px;
+    backdrop-filter: blur(12px);
 
-            z-index: -1;
-        }
+    font-size: 12px;
+    letter-spacing: 1px;
 
-        .main-wrapper {
+    animation: fadeUp 0.7s ease;
+}
 
-            width: 100%;
+.badge .dot {
+    width: 8px;
+    height: 8px;
 
-            max-width: 1050px;
+    border-radius: 50%;
 
-            margin: auto;
+    background: #78f2b4;
 
-            animation: pageLoad 0.8s ease;
-        }
+    box-shadow:
+        0 0 14px #78f2b4;
+}
 
-        @keyframes pageLoad {
+.hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
 
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+    margin: 16px 0 10px;
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    line-height: 1.05;
+}
 
-        }
+.gradient {
+    background:
+        linear-gradient(
+            90deg,
+            #9facff,
+            #e2b7ff,
+            #9facff
+        );
 
-        .top-header {
+    background-size: 200% auto;
 
-            text-align: center;
+    -webkit-background-clip: text;
 
-            margin-bottom: 30px;
-        }
+    color: transparent;
 
-        .project-badge {
+    animation:
+        gradientMove 4s linear infinite;
+}
 
-            display: inline-block;
+.hero p {
+    max-width: 720px;
 
-            padding: 8px 18px;
+    margin: auto;
 
-            border-radius: 30px;
+    color:
+        rgba(255, 255, 255, 0.76);
 
-            background: rgba(255,255,255,0.13);
+    line-height: 1.7;
 
-            border: 1px solid rgba(255,255,255,0.25);
+    font-size: 15px;
+}
 
-            backdrop-filter: blur(10px);
 
-            font-size: 13px;
+/* Developer section */
 
-            letter-spacing: 1px;
+.developer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-            margin-bottom: 15px;
-        }
+    gap: 20px;
 
-        .top-header h1 {
+    margin-bottom: 22px;
 
-            font-size: 42px;
+    padding: 22px 25px;
 
-            margin-bottom: 10px;
+    border-radius: 22px;
 
-            text-shadow:
-                0 4px 15px rgba(0,0,0,0.3);
-        }
+    background:
+        linear-gradient(
+            120deg,
+            rgba(102, 126, 234, 0.94),
+            rgba(118, 75, 162, 0.94)
+        );
 
-        .top-header h1 span {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.2);
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #8ea2ff,
-                    #d6a7ff
-                );
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.25);
 
-            -webkit-background-clip: text;
+    position: relative;
 
-            -webkit-text-fill-color: transparent;
-        }
+    overflow: hidden;
+}
 
-        .top-header p {
+.developer::after {
+    content: "";
 
-            font-size: 16px;
+    position: absolute;
 
-            color: rgba(255,255,255,0.78);
+    inset: 0;
 
-            max-width: 650px;
+    width: 35%;
 
-            margin: auto;
+    transform:
+        translateX(-120%);
 
-            line-height: 1.6;
-        }
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.14),
+            transparent
+        );
 
-        .developer {
+    animation:
+        shine 5s infinite;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(102,126,234,0.95),
-                    rgba(118,75,162,0.95)
-                );
+.developer small {
+    opacity: 0.85;
+}
 
-            border-radius: 20px;
+.developer h2 {
+    font-size: 28px;
+    margin: 4px 0;
+}
 
-            padding: 20px 25px;
+.developer p {
+    font-size: 13px;
+    opacity: 0.88;
+    line-height: 1.5;
+}
 
-            margin-bottom: 30px;
+.dev-avatar {
+    width: 82px;
+    height: 82px;
 
-            display: flex;
+    border-radius: 50%;
 
-            align-items: center;
+    display: grid;
+    place-items: center;
 
-            justify-content: space-between;
+    font-size: 42px;
 
-            box-shadow:
-                0 15px 35px rgba(0,0,0,0.25);
+    background:
+        rgba(255, 255, 255, 0.15);
 
-            border: 1px solid rgba(255,255,255,0.18);
-        }
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.3);
 
-        .developer-info h2 {
+    animation:
+        pulse 3s ease-in-out infinite;
+}
 
-            font-size: 24px;
 
-            margin-bottom: 5px;
-        }
+/* Features */
 
-        .developer-info p {
+.features {
+    display: grid;
 
-            font-size: 14px;
+    grid-template-columns:
+        repeat(3, 1fr);
 
-            opacity: 0.9;
-        }
+    gap: 15px;
 
-        .developer-name {
+    margin-bottom: 28px;
+}
 
-            font-size: 28px;
+.feature {
+    padding: 21px;
 
-            font-weight: bold;
+    border-radius: 18px;
 
-            letter-spacing: 0.5px;
-        }
+    text-align: center;
 
-        .developer-icon {
+    background:
+        rgba(255, 255, 255, 0.1);
 
-            font-size: 50px;
-        }
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.17);
 
-        .features {
+    backdrop-filter: blur(13px);
 
-            display: grid;
+    transition: 0.35s;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    position: relative;
 
-            gap: 15px;
+    overflow: hidden;
+}
 
-            margin-bottom: 30px;
-        }
+.feature:hover {
+    transform:
+        translateY(-8px)
+        scale(1.02);
 
-        .feature {
+    background:
+        rgba(255, 255, 255, 0.15);
 
-            background:
-                rgba(255,255,255,0.10);
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.2);
+}
 
-            border:
-                1px solid rgba(255,255,255,0.18);
+.feature-icon {
+    font-size: 31px;
+    margin-bottom: 9px;
+}
 
-            backdrop-filter: blur(12px);
+.feature h3 {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
 
-            border-radius: 16px;
+.feature p {
+    font-size: 12px;
 
-            padding: 18px;
+    color:
+        rgba(255, 255, 255, 0.68);
+}
 
-            text-align: center;
 
-            transition: 0.3s;
-        }
+/* Content */
 
-        .feature:hover {
+.content {
+    display: grid;
 
-            transform: translateY(-5px);
+    grid-template-columns:
+        1fr 1.15fr;
 
-            background:
-                rgba(255,255,255,0.15);
-        }
+    gap: 24px;
 
-        .feature-icon {
+    align-items: start;
+}
 
-            font-size: 30px;
+.panel {
+    color: var(--text);
 
-            margin-bottom: 8px;
-        }
+    background:
+        rgba(255, 255, 255, 0.96);
 
-        .feature h3 {
+    border-radius: 24px;
 
-            font-size: 15px;
+    padding: 30px;
 
-            margin-bottom: 5px;
-        }
+    box-shadow:
+        0 22px 55px
+        rgba(0, 0, 0, 0.28);
 
-        .feature p {
+    animation:
+        fadeUp 0.9s ease both;
+}
 
-            font-size: 12px;
+.panel:nth-child(2) {
+    animation-delay: 0.15s;
+}
 
-            color: rgba(255,255,255,0.7);
-        }
+.panel h2 {
+    color: #5135a8;
 
-        .content {
+    font-size: 24px;
 
-            display: grid;
+    margin-bottom: 12px;
+}
 
-            grid-template-columns:
-                1fr 1.3fr;
+.panel > p {
+    color: var(--muted);
 
-            gap: 25px;
+    font-size: 14px;
 
-            align-items: start;
-        }
+    line-height: 1.75;
 
-        .info-panel {
+    margin-bottom: 20px;
+}
 
-            background:
-                rgba(255,255,255,0.95);
 
-            color: #333;
+/* Model information */
 
-            border-radius: 22px;
+.model-box {
+    background:
+        linear-gradient(
+            135deg,
+            #f3f5ff,
+            #faf7ff
+        );
 
-            padding: 30px;
+    border-left:
+        5px solid
+        var(--primary);
 
-            box-shadow:
-                0 20px 50px rgba(0,0,0,0.3);
+    padding: 18px;
 
-            backdrop-filter: blur(10px);
-        }
+    border-radius: 13px;
 
-        .info-panel h2 {
+    margin-bottom: 21px;
+}
 
-            color: #5a35b5;
+.model-box h3 {
+    color: #5135a8;
 
-            margin-bottom: 12px;
+    font-size: 15px;
 
-            font-size: 23px;
-        }
+    margin-bottom: 7px;
+}
 
-        .info-panel > p {
+.model-box p {
+    color: #70758a;
 
-            color: #666;
+    font-size: 13px;
 
-            font-size: 14px;
+    line-height: 1.55;
+}
 
-            line-height: 1.7;
 
-            margin-bottom: 20px;
-        }
+/* Input guide */
 
-        .model-box {
+.input-guide h3 {
+    font-size: 17px;
 
-            background: #f6f7ff;
+    color: #303448;
 
-            border-left: 5px solid #667eea;
+    margin-bottom: 8px;
+}
 
-            padding: 17px;
+.guide-item {
+    display: flex;
 
-            border-radius: 12px;
+    gap: 12px;
 
-            margin-bottom: 18px;
-        }
+    padding: 13px 0;
 
-        .model-box h3 {
+    border-bottom:
+        1px solid
+        #ececf2;
+}
 
-            color: #5a35b5;
+.guide-icon {
+    font-size: 21px;
+}
 
-            font-size: 15px;
+.guide-item strong {
+    font-size: 13px;
+}
 
-            margin-bottom: 7px;
-        }
+.guide-item p {
+    color: #7b7f91;
 
-        .model-box p {
+    font-size: 12px;
 
-            color: #666;
+    margin-top: 3px;
+}
 
-            font-size: 13px;
 
-            line-height: 1.5;
-        }
+/* Image */
 
-        .input-guide {
+.project-image {
+    margin-top: 22px;
 
-            margin-top: 15px;
-        }
+    height: 190px;
 
-        .input-guide h3 {
+    border-radius: 18px;
 
-            color: #444;
+    overflow: hidden;
 
-            font-size: 17px;
+    position: relative;
 
-            margin-bottom: 12px;
-        }
+    background:
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85")
+        center / cover;
+}
 
-        .guide-item {
+.project-image::after {
+    content: "";
 
-            display: flex;
+    position: absolute;
 
-            gap: 12px;
+    inset: 0;
 
-            padding: 11px 0;
+    background:
+        linear-gradient(
+            0deg,
+            rgba(9, 13, 40, 0.72),
+            transparent
+        );
+}
 
-            border-bottom: 1px solid #eee;
-        }
+.project-image span {
+    position: absolute;
 
-        .guide-icon {
+    bottom: 15px;
+    left: 17px;
 
-            font-size: 20px;
-        }
+    z-index: 1;
 
-        .guide-item strong {
+    font-weight: 700;
 
-            color: #444;
+    font-size: 14px;
+}
 
-            font-size: 13px;
-        }
 
-        .guide-item p {
+/* Prediction form */
 
-            color: #777;
+.form-card h2 {
+    text-align: center;
 
-            font-size: 12px;
+    margin-bottom: 6px;
+}
 
-            margin-top: 3px;
-        }
+.subtitle {
+    text-align: center;
 
-        .prediction-card {
+    color: #8a8e9f;
 
-            background:
-                rgba(255,255,255,0.96);
+    font-size: 13px;
 
-            color: #333;
+    margin-bottom: 22px;
+}
 
-            border-radius: 22px;
+label {
+    display: block;
 
-            padding: 30px;
+    margin: 15px 0 7px;
 
-            box-shadow:
-                0 20px 50px rgba(0,0,0,0.3);
-        }
+    font-size: 13px;
 
-        .prediction-card h2 {
+    font-weight: 700;
 
-            text-align: center;
+    color: #303448;
+}
 
-            color: #5a35b5;
+.input-wrap {
+    position: relative;
+}
 
-            margin-bottom: 7px;
+.input-icon {
+    position: absolute;
 
-            font-size: 25px;
-        }
+    left: 14px;
 
-        .prediction-subtitle {
+    top: 50%;
 
-            text-align: center;
+    transform:
+        translateY(-50%);
 
-            color: #888;
+    font-size: 18px;
+}
 
-            font-size: 13px;
+input[type="text"] {
+    width: 100%;
 
-            margin-bottom: 25px;
-        }
+    padding:
+        14px
+        14px
+        14px
+        44px;
 
-        label {
+    border:
+        2px solid
+        #e5e6ee;
 
-            display: block;
+    border-radius: 12px;
 
-            margin-top: 17px;
+    outline: none;
 
-            margin-bottom: 7px;
+    font-size: 15px;
 
-            font-weight: bold;
+    background: #fafafd;
 
-            color: #333;
+    transition: 0.3s;
+}
 
-            font-size: 14px;
-        }
+input[type="text"]:focus {
+    border-color:
+        var(--primary);
 
-        .input-wrapper {
+    background: white;
 
-            position: relative;
-        }
+    box-shadow:
+        0 0 0 4px
+        rgba(102, 126, 234, 0.12);
 
-        .input-icon {
+    transform:
+        translateY(-1px);
+}
 
-            position: absolute;
 
-            left: 14px;
+/* Prediction button */
 
-            top: 50%;
+.predict-btn {
+    width: 100%;
 
-            transform:
-                translateY(-50%);
+    margin-top: 25px;
 
-            font-size: 18px;
-        }
+    padding: 16px;
 
-        input[type="text"] {
+    border: 0;
 
-            width: 100%;
+    border-radius: 13px;
 
-            padding:
-                14px
-                14px
-                14px
-                45px;
+    color: white;
 
-            border:
-                2px solid #e4e4e4;
+    font-size: 16px;
 
-            border-radius: 12px;
+    font-weight: 800;
 
-            font-size: 15px;
+    cursor: pointer;
 
-            outline: none;
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
 
-            background: #fafafa;
+    box-shadow:
+        0 11px 25px
+        rgba(102, 126, 234, 0.32);
 
-            transition: 0.3s;
-        }
+    transition: 0.3s;
 
-        input[type="text"]:focus {
+    position: relative;
 
-            border-color: #667eea;
+    overflow: hidden;
+}
 
-            background: white;
+.predict-btn:hover {
+    transform:
+        translateY(-3px);
 
-            box-shadow:
-                0 0 0 4px
-                rgba(102,126,234,0.12);
-        }
+    box-shadow:
+        0 16px 30px
+        rgba(102, 126, 234, 0.42);
+}
 
-        input[type="text"]::placeholder {
+.predict-btn:active {
+    transform:
+        translateY(0);
+}
 
-            color: #aaa;
-        }
+.predict-btn.loading {
+    pointer-events: none;
 
-        input[type="submit"] {
+    opacity: 0.85;
+}
 
-            width: 100%;
+.predict-btn.loading::before {
+    content: "";
 
-            margin-top: 28px;
+    display: inline-block;
 
-            padding: 16px;
+    width: 16px;
+    height: 16px;
 
-            border: none;
+    border:
+        2px solid
+        rgba(255, 255, 255, 0.4);
 
-            border-radius: 13px;
+    border-top-color: white;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #667eea,
-                    #764ba2
-                );
+    border-radius: 50%;
 
-            color: white;
+    vertical-align: -3px;
 
-            font-size: 17px;
+    margin-right: 8px;
 
-            font-weight: bold;
+    animation:
+        spin 0.7s linear infinite;
+}
 
-            cursor: pointer;
 
-            transition: 0.3s;
+/* Notice */
 
-            box-shadow:
-                0 10px 25px
-                rgba(102,126,234,0.35);
-        }
+.notice {
+    margin-top: 18px;
 
-        input[type="submit"]:hover {
+    padding: 13px;
 
-            transform:
-                translateY(-3px);
+    background: #fff8e7;
 
-            box-shadow:
-                0 15px 30px
-                rgba(102,126,234,0.45);
-        }
+    border-left:
+        4px solid
+        #f3bb4b;
 
-        input[type="submit"]:active {
+    border-radius: 9px;
 
-            transform:
-                translateY(0);
-        }
+    color: #725d20;
 
-        .notice {
+    font-size: 12px;
 
-            margin-top: 20px;
+    line-height: 1.5;
+}
 
-            padding: 13px;
 
-            background: #fff8e6;
+/* Contact */
 
-            border-left:
-                4px solid #f5b942;
+.contact {
+    margin-top: 26px;
 
-            border-radius: 9px;
+    text-align: center;
 
-            color: #725d20;
+    padding: 24px;
 
-            font-size: 12px;
+    border-radius: 20px;
 
-            line-height: 1.5;
-        }
+    background:
+        rgba(255, 255, 255, 0.09);
 
-        .footer {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
 
-            text-align: center;
+    backdrop-filter: blur(12px);
+}
 
-            margin-top: 35px;
+.contact h3 {
+    font-size: 18px;
 
-            padding-top: 20px;
+    margin-bottom: 8px;
+}
 
-            border-top:
-                1px solid
-                rgba(255,255,255,0.15);
+.contact p {
+    font-size: 13px;
 
-            color:
-                rgba(255,255,255,0.65);
+    color:
+        rgba(255, 255, 255, 0.7);
 
-            font-size: 13px;
+    margin-bottom: 10px;
+}
 
-            line-height: 1.8;
-        }
+.contact a {
+    color: #c5ccff;
 
-        .footer strong {
+    font-weight: 700;
 
-            color: white;
+    text-decoration: none;
+}
 
-            font-size: 15px;
-        }
+.contact a:hover {
+    text-decoration: underline;
+}
 
-        @media (max-width: 850px) {
 
-            .content {
+/* Footer */
 
-                grid-template-columns: 1fr;
+.footer {
+    text-align: center;
 
-            }
+    margin-top: 28px;
 
-            .features {
+    padding: 20px 0;
 
-                grid-template-columns:
-                    repeat(3, 1fr);
+    color:
+        rgba(255, 255, 255, 0.6);
 
-            }
+    font-size: 12px;
 
-        }
+    line-height: 1.8;
+}
 
-        @media (max-width: 600px) {
+.footer strong {
+    color: white;
 
-            body {
+    font-size: 14px;
+}
 
-                padding: 25px 15px;
 
-            }
+/* Scroll reveal */
 
-            .top-header h1 {
+.reveal {
+    opacity: 0;
 
-                font-size: 30px;
+    transform:
+        translateY(25px);
 
-            }
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
 
-            .features {
+.reveal.show {
+    opacity: 1;
 
-                grid-template-columns: 1fr;
+    transform: none;
+}
 
-            }
 
-            .developer {
+/* Tablet */
 
-                text-align: center;
+@media (max-width: 850px) {
 
-                flex-direction: column;
+    .content {
+        grid-template-columns: 1fr;
+    }
 
-                gap: 12px;
+    .features {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
 
-            }
 
-            .developer-name {
+/* Mobile */
 
-                font-size: 24px;
+@media (max-width: 600px) {
 
-            }
+    body {
+        background-attachment: scroll;
+    }
 
-            .info-panel,
-            .prediction-card {
+    .container {
+        width: 92%;
+    }
 
-                padding: 22px;
+    nav {
+        margin-bottom: 28px;
+    }
 
-            }
+    .nav-links {
+        display: none;
+    }
 
-        }
+    .features {
+        grid-template-columns: 1fr;
+    }
 
-    </style>
+    .developer {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .panel {
+        padding: 22px;
+    }
+
+    .hero {
+        margin-bottom: 25px;
+    }
+}
+</style>
 
 </head>
 
@@ -697,62 +962,112 @@
 <body>
 
 
-<div class="main-wrapper">
+<div class="container main">
 
 
-    <div class="top-header">
+    <!-- Navigation -->
 
-        <div class="project-badge">
+    <nav>
 
-            🤖 AI & ML PROJECT • HOUSE PRICE PREDICTION
+        <div class="logo">
+
+            🏠 <span>
+                AI House Predictor
+            </span>
 
         </div>
+
+
+        <div class="nav-links">
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#predict">
+                Predict
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Hero -->
+
+    <header class="hero">
+
+        <div class="badge">
+
+            <span class="dot"></span>
+
+            AI & ML PROJECT • HOUSE PRICE PREDICTION
+
+        </div>
+
 
         <h1>
 
-            🏠 <span>House Value Predictor</span>
+            🏠
+
+            <span class="gradient">
+                House Value Predictor
+            </span>
 
         </h1>
 
+
         <p>
 
-            An intelligent machine learning application that estimates
-            house values using property and neighborhood characteristics.
+            An intelligent machine learning application
+            that estimates house values from property
+            and neighborhood characteristics.
 
         </p>
 
-    </div>
+    </header>
 
 
-    <div class="developer">
+    <!-- Developer -->
 
-        <div class="developer-info">
+    <section class="developer reveal">
 
-            <p>
+        <div>
+
+            <small>
                 🚀 DEVELOPED BY
-            </p>
+            </small>
 
-            <div class="developer-name">
+            <h2>
                 Kishan Singh
-            </div>
+            </h2>
 
             <p>
-                Department of Computer Science & Engineering
+
+                Computer Science & Engineering
                 (Artificial Intelligence & Machine Learning)
+
             </p>
 
         </div>
 
-        <div class="developer-icon">
+
+        <div class="dev-avatar">
 
             👨‍💻
 
         </div>
 
-    </div>
+    </section>
 
 
-    <div class="features">
+    <!-- Features -->
+
+    <section class="features reveal">
 
 
         <div class="feature">
@@ -783,7 +1098,7 @@
             </h3>
 
             <p>
-                Uses property characteristics
+                Uses important property characteristics
             </p>
 
         </div>
@@ -800,20 +1115,26 @@
             </h3>
 
             <p>
-                Get predictions within seconds
+                Get your prediction within seconds
             </p>
 
         </div>
 
 
-    </div>
+    </section>
 
 
-    <div class="content">
+    <!-- Main content -->
+
+    <main class="content">
 
 
-        <div class="info-panel">
+        <!-- About -->
 
+        <section
+            class="panel reveal"
+            id="about"
+        >
 
             <h2>
                 🧠 About This Project
@@ -822,9 +1143,10 @@
 
             <p>
 
-                This application uses machine learning to estimate
-                the value of a house based on selected property
-                and neighborhood features.
+                This application uses machine learning
+                to estimate the value of a house based
+                on selected property and neighborhood
+                features.
 
             </p>
 
@@ -838,8 +1160,8 @@
                 <p>
 
                     Enter the required values and the trained
-                    machine learning model will process the inputs
-                    and generate an estimated house value.
+                    machine learning model will process the
+                    inputs and generate an estimated house value.
 
                 </p>
 
@@ -915,37 +1237,60 @@
 
                 </div>
 
-
             </div>
 
 
-        </div>
+            <!-- House image -->
+
+            <div class="project-image">
+
+                <span>
+                    🏡 AI-powered property value estimation
+                </span>
+
+            </div>
+
+        </section>
 
 
-        <div class="prediction-card">
+        <!-- Prediction -->
 
+        <section
+            class="panel form-card reveal"
+            id="predict"
+        >
 
             <h2>
                 🔮 Make a Prediction
             </h2>
 
 
-            <p class="prediction-subtitle">
+            <p class="subtitle">
 
                 Enter the property details below
 
             </p>
 
 
-            <form action="/index" method="POST">
+            <!-- IMPORTANT:
+                 Flask route remains /index
+            -->
 
+            <form
+                action="/index"
+                method="POST"
+                id="predictionForm"
+            >
+
+
+                <!-- RM -->
 
                 <label>
                     🏠 RM — Average Rooms
                 </label>
 
 
-                <div class="input-wrapper">
+                <div class="input-wrap">
 
                     <span class="input-icon">
                         🏡
@@ -956,18 +1301,21 @@
                         type="text"
                         name="rm"
                         placeholder="Example: 6.57"
+                        inputmode="decimal"
                         required
                     >
 
                 </div>
 
 
+                <!-- PT -->
+
                 <label>
                     👨‍🏫 PT — Pupil-Teacher Ratio
                 </label>
 
 
-                <div class="input-wrapper">
+                <div class="input-wrap">
 
                     <span class="input-icon">
                         📚
@@ -978,18 +1326,21 @@
                         type="text"
                         name="pt"
                         placeholder="Example: 15.3"
+                        inputmode="decimal"
                         required
                     >
 
                 </div>
 
 
+                <!-- LSTAT -->
+
                 <label>
                     📊 LSTAT — Lower Status %
                 </label>
 
 
-                <div class="input-wrapper">
+                <div class="input-wrap">
 
                     <span class="input-icon">
                         📈
@@ -1000,16 +1351,24 @@
                         type="text"
                         name="lstat"
                         placeholder="Example: 4.98"
+                        inputmode="decimal"
                         required
                     >
 
                 </div>
 
 
-                <input
+                <!-- Submit -->
+
+                <button
+                    class="predict-btn"
                     type="submit"
-                    value="🔮 Predict House Value"
+                    id="predictBtn"
                 >
+
+                    🔮 Predict House Value
+
+                </button>
 
 
             </form>
@@ -1018,6 +1377,7 @@
             <div class="notice">
 
                 💡 <strong>Tip:</strong>
+
                 Enter accurate numerical values for better
                 model predictions. The result is an estimate
                 generated by the trained machine learning model.
@@ -1025,44 +1385,162 @@
             </div>
 
 
-        </div>
+        </section>
 
 
-    </div>
+    </main>
 
 
-    <div class="footer">
+    <!-- Contact -->
+
+    <section
+        class="contact reveal"
+        id="contact"
+    >
+
+        <h3>
+            📩 Get in Touch
+        </h3>
 
         <p>
+            Have feedback or want to know more about this project?
+        </p>
 
+        <a href="mailto:mekishan13@gmail.com">
+
+            mekishan13@gmail.com
+
+        </a>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <p>
             🚀 <strong>Kishan Singh</strong>
-
         </p>
 
         <p>
-
             CSE — Artificial Intelligence & Machine Learning
-
         </p>
 
         <p>
-
             🧠 Machine Learning • Data Science • AI
-
         </p>
 
         <p>
-
             © 2026 Kishan Singh. All Rights Reserved.
-
         </p>
 
-    </div>
+    </footer>
 
 
 </div>
 
 
-</body>
+<script>
 
+/* =========================================
+   SCROLL REVEAL ANIMATION
+========================================= */
+
+const revealItems =
+    document.querySelectorAll(".reveal");
+
+
+const observer =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach(
+                entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealItems.forEach(
+    item => observer.observe(item)
+);
+
+
+/* =========================================
+   PREDICTION LOADING ANIMATION
+========================================= */
+
+document
+    .getElementById("predictionForm")
+    .addEventListener(
+        "submit",
+        function () {
+
+            const button =
+                document.getElementById(
+                    "predictBtn"
+                );
+
+            button.classList.add(
+                "loading"
+            );
+
+            button.innerHTML =
+                "Processing prediction...";
+
+        }
+    );
+
+
+/* =========================================
+   NUMERICAL INPUT VALIDATION
+========================================= */
+
+document
+    .querySelectorAll(
+        'input[type="text"]'
+    )
+    .forEach(
+        input => {
+
+            input.addEventListener(
+                "input",
+                () => {
+
+                    input.value =
+                        input.value.replace(
+                            /[^0-9.-]/g,
+                            ""
+                        );
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
 </html>
