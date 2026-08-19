@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,19 +8,16 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<meta name="description"
-      content="AI House Value Prediction Result by Kishan Singh">
-
 <title>
-    AI House Value Predictor | Prediction Result
+    AI House Value Predictor | Result
 </title>
 
 
 <style>
 
-/* =========================================
-   GLOBAL
-========================================= */
+/* =========================
+   RESET
+========================= */
 
 * {
     box-sizing: border-box;
@@ -27,17 +25,6 @@
     padding: 0;
 }
 
-:root {
-
-    --primary: #667eea;
-    --secondary: #764ba2;
-
-    --dark: #090f2f;
-
-    --text: #25283a;
-
-    --muted: #73778a;
-}
 
 html {
     scroll-behavior: smooth;
@@ -48,35 +35,35 @@ body {
 
     min-height: 100vh;
 
-    padding: 35px 18px;
-
-    color: #fff;
+    padding:
+        35px 20px;
 
     font-family:
-        Inter,
         Arial,
         Helvetica,
         sans-serif;
+
+    color: white;
 
     background:
 
         linear-gradient(
             135deg,
-            rgba(5,10,35,0.95),
-            rgba(48,15,78,0.90),
-            rgba(10,28,72,0.94)
+            rgba(8,15,48,0.93),
+            rgba(54,22,91,0.90),
+            rgba(11,35,78,0.93)
         ),
 
-        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90")
+        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=90")
         center / cover fixed;
 
     overflow-x: hidden;
 }
 
 
-/* =========================================
-   BACKGROUND ANIMATION
-========================================= */
+/* =========================
+   BACKGROUND GLOW
+========================= */
 
 body::before,
 body::after {
@@ -85,62 +72,75 @@ body::after {
 
     position: fixed;
 
+    width: 380px;
+    height: 380px;
+
     border-radius: 50%;
 
-    filter: blur(95px);
+    filter:
+        blur(110px);
 
     z-index: -1;
 
     pointer-events: none;
 
     animation:
-        float 9s ease-in-out infinite alternate;
+        glowMove 9s ease-in-out infinite alternate;
 }
+
 
 body::before {
 
-    width: 330px;
-
-    height: 330px;
-
     background:
-        rgba(102,126,234,0.28);
+        rgba(102,126,234,0.25);
 
     top: -120px;
-
     left: -100px;
 }
 
+
 body::after {
 
-    width: 390px;
-
-    height: 390px;
-
     background:
-        rgba(194,91,235,0.20);
+        rgba(180,80,220,0.20);
 
-    right: -140px;
-
-    bottom: -150px;
+    bottom: -130px;
+    right: -120px;
 
     animation-delay: 2s;
 }
 
 
-@keyframes float {
+@keyframes glowMove {
 
     to {
 
         transform:
-            translate(45px,35px)
+            translate(45px,40px)
             scale(1.15);
 
     }
 }
 
 
-@keyframes fadeUp {
+/* =========================
+   WRAPPER
+========================= */
+
+.main-wrapper {
+
+    width: 100%;
+
+    max-width: 1150px;
+
+    margin: auto;
+
+    animation:
+        pageLoad 0.8s ease;
+}
+
+
+@keyframes pageLoad {
 
     from {
 
@@ -162,233 +162,70 @@ body::after {
 }
 
 
-@keyframes pulse {
+/* =========================
+   HEADER
+========================= */
 
-    0%,
-    100% {
+.top-header {
 
-        transform: scale(1);
+    text-align:
+        center;
 
-    }
-
-    50% {
-
-        transform: scale(1.08);
-
-    }
+    margin-bottom:
+        28px;
 }
 
 
-@keyframes shine {
+.project-badge {
 
-    to {
+    display:
+        inline-flex;
 
-        transform:
-            translateX(160%);
+    padding:
+        9px 20px;
 
-    }
-}
+    border-radius:
+        30px;
 
-
-@keyframes progress {
-
-    from {
-
-        width: 0;
-
-    }
-
-    to {
-
-        width: var(--score);
-
-    }
-}
-
-
-@keyframes gradient {
-
-    to {
-
-        background-position:
-            200% center;
-
-    }
-}
-
-
-/* =========================================
-   MAIN WRAPPER
-========================================= */
-
-.wrapper {
-
-    width:
-        min(1050px,94%);
-
-    margin: auto;
-
-    animation:
-        fadeUp 0.75s ease;
-}
-
-
-/* =========================================
-   NAVIGATION
-========================================= */
-
-nav {
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    align-items: center;
-
-    padding: 13px 18px;
-
-    margin-bottom: 30px;
+    background:
+        rgba(255,255,255,0.12);
 
     border:
         1px solid
-        rgba(255,255,255,0.16);
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,0.09);
+        rgba(255,255,255,0.22);
 
     backdrop-filter:
-        blur(15px);
+        blur(12px);
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        1.5px;
+
+    margin-bottom:
+        15px;
 }
 
 
-.logo {
-
-    font-weight: 800;
-
-}
-
-
-.logo span {
-
-    color:
-        #b9c2ff;
-
-}
-
-
-.nav-links {
-
-    display: flex;
-
-    gap: 22px;
-
-}
-
-
-.nav-links a {
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    opacity: 0.8;
-
-    transition: 0.3s;
-
-}
-
-
-.nav-links a:hover {
-
-    opacity: 1;
-
-    color:
-        #c4ccff;
-
-}
-
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero {
-
-    text-align: center;
-
-    margin-bottom: 25px;
-
-}
-
-
-.badge {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 9px 18px;
-
-    border-radius: 30px;
-
-    background:
-        rgba(255,255,255,0.10);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.20);
-
-    font-size: 11px;
-
-    letter-spacing: 1.5px;
-
-}
-
-
-.dot {
-
-    width: 8px;
-
-    height: 8px;
-
-    background:
-        #79efb2;
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 14px
-        #79efb2;
-
-}
-
-
-.hero h1 {
+.top-header h1 {
 
     font-size:
         clamp(34px,6vw,52px);
 
-    margin:
-        15px 0 8px;
-
+    margin-bottom:
+        10px;
 }
 
 
-.hero h1 span {
+.top-header h1 span {
 
     background:
 
         linear-gradient(
             90deg,
             #91a4ff,
-            #e3b6ff,
+            #d6a7ff,
             #91d8ff,
             #91a4ff
         );
@@ -399,49 +236,67 @@ nav {
     -webkit-background-clip:
         text;
 
-    color:
+    -webkit-text-fill-color:
         transparent;
 
     animation:
-        gradient 4s linear infinite;
+        gradientMove 4s linear infinite;
 }
 
 
-.hero p {
+.top-header p {
 
     color:
-        rgba(255,255,255,0.72);
+        rgba(255,255,255,0.76);
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    line-height: 1.6;
-
+    line-height:
+        1.6;
 }
 
 
-/* =========================================
+@keyframes gradientMove {
+
+    to {
+
+        background-position:
+            200% center;
+
+    }
+}
+
+
+/* =========================
    DEVELOPER
-========================================= */
+========================= */
 
 .developer {
 
-    position: relative;
+    position:
+        relative;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    display: flex;
+    display:
+        flex;
+
+    align-items:
+        center;
 
     justify-content:
         space-between;
 
-    align-items: center;
-
     padding:
-        20px 25px;
+        23px 30px;
 
-    margin-bottom: 23px;
+    margin-bottom:
+        25px;
 
-    border-radius: 22px;
+    border-radius:
+        23px;
 
     background:
 
@@ -452,8 +307,8 @@ nav {
         );
 
     box-shadow:
-        0 18px 40px
-        rgba(0,0,0,0.28);
+        0 18px 45px
+        rgba(0,0,0,0.30);
 }
 
 
@@ -461,146 +316,189 @@ nav {
 
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    top: 0;
+    bottom: 0;
+
+    left: -50%;
 
     width: 35%;
-
-    transform:
-        translateX(-150%);
 
     background:
 
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,0.15),
+            rgba(255,255,255,0.18),
             transparent
         );
 
+    transform:
+        skewX(-20deg);
+
     animation:
         shine 5s infinite;
+}
 
+
+@keyframes shine {
+
+    to {
+        left: 150%;
+    }
 }
 
 
 .developer-label {
 
-    font-size: 10px;
+    font-size:
+        10px;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 
-    opacity: 0.8;
-
+    opacity:
+        0.8;
 }
 
 
 .developer-name {
 
-    font-size: 28px;
+    font-size:
+        30px;
 
-    font-weight: 800;
+    font-weight:
+        800;
 
-    margin: 4px 0;
-
+    margin:
+        4px 0 6px;
 }
 
 
 .developer-dept {
 
-    font-size: 12px;
+    font-size:
+        13px;
 
-    opacity: 0.9;
+    line-height:
+        1.5;
 
-    line-height: 1.5;
-
+    opacity:
+        0.9;
 }
 
 
 .developer-icon {
 
-    font-size: 52px;
+    font-size:
+        58px;
 
     animation:
-        pulse 3s ease-in-out infinite;
-
+        developerFloat 3s ease-in-out infinite;
 }
 
 
-/* =========================================
-   LAYOUT
-========================================= */
+@keyframes developerFloat {
 
-.layout {
+    0%,100% {
+        transform:
+            translateY(0);
+    }
 
-    display: grid;
+    50% {
+        transform:
+            translateY(-9px);
+    }
+}
+
+
+/* =========================
+   RESULT LAYOUT
+========================= */
+
+.result-layout {
+
+    display:
+        grid;
 
     grid-template-columns:
-        0.85fr 1.4fr;
+        0.85fr 1.35fr;
 
-    gap: 23px;
+    gap:
+        25px;
 
     align-items:
-        start;
-
+        stretch;
 }
 
 
-.panel {
+.input-panel,
+.result-panel {
 
     color:
-        var(--text);
+        #333;
 
     background:
         rgba(255,255,255,0.97);
 
-    padding: 27px;
+    padding:
+        30px;
 
-    border-radius: 24px;
+    border-radius:
+        24px;
 
     box-shadow:
         0 22px 55px
-        rgba(0,0,0,0.3);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.7);
+        rgba(0,0,0,0.30);
 
 }
 
 
-.panel h2 {
+/* =========================
+   INPUT PANEL
+========================= */
+
+.input-panel h2 {
 
     color:
-        #5738ae;
+        #5a35b5;
 
-    font-size: 22px;
+    font-size:
+        23px;
 
-    margin-bottom: 7px;
-
+    margin-bottom:
+        7px;
 }
 
 
-.subtitle {
+.input-panel-subtitle {
 
     color:
         #888;
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    line-height: 1.5;
+    line-height:
+        1.5;
 
-    margin-bottom: 18px;
-
+    margin-bottom:
+        20px;
 }
 
 
-/* =========================================
-   INPUT CARDS
-========================================= */
-
 .input-card {
+
+    padding:
+        18px;
+
+    border-radius:
+        15px;
+
+    margin-bottom:
+        13px;
 
     background:
 
@@ -610,12 +508,6 @@ nav {
             #fff
         );
 
-    padding: 17px;
-
-    border-radius: 15px;
-
-    margin-bottom: 12px;
-
     border-left:
         5px solid
         #667eea;
@@ -624,12 +516,22 @@ nav {
         0 4px 12px
         rgba(0,0,0,0.04);
 
+    transition:
+        0.3s;
+}
+
+
+.input-card:hover {
+
+    transform:
+        translateX(5px);
 }
 
 
 .input-top {
 
-    display: flex;
+    display:
+        flex;
 
     justify-content:
         space-between;
@@ -637,35 +539,37 @@ nav {
     align-items:
         center;
 
-    gap: 10px;
+    gap:
+        10px;
 
-    margin-bottom: 7px;
-
+    margin-bottom:
+        7px;
 }
 
 
 .input-card strong {
 
-    font-size: 13px;
-
     color:
         #444;
 
+    font-size:
+        13px;
 }
 
 
 .value {
 
-    font-size: 18px;
-
     color:
         #667eea;
 
-    font-weight: 800;
+    font-size:
+        18px;
+
+    font-weight:
+        bold;
 
     white-space:
         nowrap;
-
 }
 
 
@@ -674,107 +578,110 @@ nav {
     color:
         #888;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
-    line-height: 1.5;
-
+    line-height:
+        1.5;
 }
 
 
-/* =========================================
-   PROPERTY IMAGE
-========================================= */
+/* =========================
+   LARGE IMAGE
+========================= */
 
-.visual {
+.property-image {
 
-    margin-top: 18px;
+    width:
+        100%;
 
-    height: 150px;
+    height:
+        430px;
 
-    border-radius: 17px;
+    margin-top:
+        22px;
 
-    overflow: hidden;
-
-    position: relative;
+    border-radius:
+        20px;
 
     background:
 
-        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85")
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=90")
         center / cover;
 
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,0.20);
+
+    transition:
+        transform 0.6s ease;
+
+    overflow:
+        hidden;
 }
 
 
-.visual::after {
+.property-image:hover {
 
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-
-        linear-gradient(
-            0deg,
-            rgba(8,12,38,0.75),
-            transparent
-        );
-
+    transform:
+        scale(1.02);
 }
 
 
-.visual span {
-
-    position: absolute;
-
-    bottom: 14px;
-
-    left: 15px;
-
-    z-index: 1;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    color: white;
-
-}
+/*
+   IMPORTANT:
+   There is intentionally NO TEXT
+   over this image.
+*/
 
 
-/* =========================================
+/* =========================
    RESULT PANEL
-========================================= */
+========================= */
 
 .result-panel {
 
     text-align:
         center;
-
 }
 
 
 .result-icon {
 
-    font-size: 54px;
+    font-size:
+        62px;
 
     animation:
-        pulse 3s ease-in-out infinite;
+        houseFloat 3s ease-in-out infinite;
+}
 
+
+@keyframes houseFloat {
+
+    0%,100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(2deg);
+    }
 }
 
 
 .result-panel h2 {
 
-    font-size: 24px;
-
     color:
-        #5738ae;
+        #5a35b5;
 
-    margin:
-        4px 0;
+    font-size:
+        26px;
 
+    margin-bottom:
+        5px;
 }
 
 
@@ -783,20 +690,30 @@ nav {
     color:
         #888;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    margin-bottom: 16px;
-
+    margin-bottom:
+        18px;
 }
 
 
 .success-badge {
 
-    display: inline-flex;
+    display:
+        inline-flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 6px;
+    gap:
+        5px;
+
+    padding:
+        8px 15px;
+
+    border-radius:
+        30px;
 
     background:
         #e9f9ef;
@@ -804,34 +721,38 @@ nav {
     color:
         #238b4e;
 
-    padding:
-        8px 14px;
+    border:
+        1px solid
+        rgba(35,139,78,0.15);
 
-    border-radius: 30px;
+    font-size:
+        10px;
 
-    font-size: 10px;
+    font-weight:
+        bold;
 
-    font-weight: 800;
-
-    margin-bottom: 17px;
-
+    margin-bottom:
+        20px;
 }
 
 
-/* =========================================
-   PREDICTION VALUE
-========================================= */
+/* =========================
+   PREDICTION BOX
+========================= */
 
 .prediction-box {
 
-    position: relative;
+    position:
+        relative;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
     padding:
-        30px 18px;
+        38px 20px;
 
-    border-radius: 21px;
+    border-radius:
+        22px;
 
     background:
 
@@ -842,99 +763,128 @@ nav {
             #51358f
         );
 
-    color: white;
+    color:
+        white;
 
     box-shadow:
-        0 14px 35px
+        0 15px 38px
         rgba(102,126,234,0.38);
 
-    margin-bottom: 17px;
-
+    margin-bottom:
+        20px;
 }
 
 
-.prediction-box::before {
+.prediction-box::after {
 
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    inset: -60%;
+    top:
+        -100%;
 
-    background:
+    left:
+        -50%;
 
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.08),
-            transparent
-        );
+    width:
+        40%;
+
+    height:
+        300%;
 
     transform:
-        rotate(20deg);
+        rotate(25deg);
+
+    background:
+        rgba(255,255,255,0.08);
 
     animation:
-        shine 5s infinite;
-
+        predictionShine 4s infinite;
 }
 
 
-.prediction-label,
-.prediction-value,
-.prediction-note {
+@keyframes predictionShine {
 
-    position: relative;
-
-    z-index: 1;
-
+    to {
+        left: 150%;
+    }
 }
 
 
 .prediction-label {
 
-    font-size: 13px;
+    position:
+        relative;
 
-    opacity: 0.9;
+    z-index:
+        2;
 
+    font-size:
+        14px;
+
+    opacity:
+        0.9;
 }
 
 
 .prediction-value {
 
+    position:
+        relative;
+
+    z-index:
+        2;
+
     font-size:
-        clamp(36px,6vw,48px);
+        clamp(38px,6vw,50px);
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    margin: 7px 0;
+    margin:
+        8px 0;
 
     text-shadow:
         0 4px 12px
-        rgba(0,0,0,0.2);
-
+        rgba(0,0,0,0.25);
 }
 
 
 .prediction-note {
 
-    font-size: 10px;
+    position:
+        relative;
 
-    opacity: 0.78;
+    z-index:
+        2;
 
+    font-size:
+        10px;
+
+    opacity:
+        0.8;
 }
 
 
-/* =========================================
+/* =========================
    PROPERTY CATEGORY
-========================================= */
+========================= */
 
 .category-card {
 
-    margin-bottom: 17px;
+    padding:
+        20px;
 
-    padding: 19px;
+    margin-bottom:
+        17px;
 
-    border-radius: 17px;
+    border-radius:
+        17px;
+
+    text-align:
+        left;
 
     background:
 
@@ -946,106 +896,121 @@ nav {
 
     border:
         1px solid
-        #e4ddff;
-
-    text-align:
-        left;
-
+        #e3dcff;
 }
 
 
 .category-row {
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
     justify-content:
         space-between;
-
-    gap: 15px;
-
 }
 
 
 .category-title {
 
-    font-size: 12px;
-
     color:
         #777;
+
+    font-size:
+        11px;
 
     text-transform:
         uppercase;
 
-    letter-spacing: 1px;
-
+    letter-spacing:
+        1px;
 }
 
 
 .category-name {
 
-    font-size: 25px;
-
-    font-weight: 900;
-
     color:
         #5738ae;
 
-    margin-top: 3px;
+    font-size:
+        26px;
 
+    font-weight:
+        900;
+
+    margin-top:
+        4px;
 }
 
 
 .category-emoji {
 
-    font-size: 42px;
+    font-size:
+        44px;
 
+    animation:
+        categoryPulse 2.5s infinite;
+}
+
+
+@keyframes categoryPulse {
+
+    50% {
+        transform:
+            scale(1.12);
+    }
 }
 
 
 .category-desc {
 
-    font-size: 11px;
-
     color:
         #777;
 
-    line-height: 1.5;
+    font-size:
+        11px;
 
-    margin-top: 7px;
+    line-height:
+        1.5;
 
+    margin-top:
+        8px;
 }
 
 
-/* =========================================
+/* =========================
    PREDICTION SCORE
-========================================= */
+========================= */
 
 .score-card {
 
-    margin-bottom: 17px;
+    padding:
+        19px;
 
-    padding: 18px;
+    margin-bottom:
+        18px;
 
-    border-radius: 17px;
+    border-radius:
+        17px;
 
     background:
         #f7f8ff;
 
-    text-align:
-        left;
-
     border:
         1px solid
-        #e5e7ff;
+        #e4e6ff;
 
+    text-align:
+        left;
 }
 
 
 .score-head {
 
-    display: flex;
+    display:
+        flex;
 
     justify-content:
         space-between;
@@ -1053,53 +1018,63 @@ nav {
     align-items:
         center;
 
-    margin-bottom: 9px;
-
+    margin-bottom:
+        10px;
 }
 
 
 .score-head strong {
 
-    font-size: 13px;
-
     color:
         #3b3e51;
 
+    font-size:
+        13px;
 }
 
 
 .score-number {
 
-    font-size: 20px;
-
-    font-weight: 900;
-
     color:
         #667eea;
 
+    font-size:
+        21px;
+
+    font-weight:
+        900;
 }
 
 
 .progress {
 
-    height: 10px;
+    width:
+        100%;
+
+    height:
+        11px;
+
+    border-radius:
+        20px;
 
     background:
         #e5e7f2;
 
-    border-radius: 20px;
-
-    overflow: hidden;
-
+    overflow:
+        hidden;
 }
 
 
 .progress-bar {
 
-    height: 100%;
+    height:
+        100%;
 
     width:
         var(--score);
+
+    border-radius:
+        20px;
 
     background:
 
@@ -1109,36 +1084,54 @@ nav {
             #764ba2
         );
 
-    border-radius: 20px;
-
     animation:
-        progress 1.2s ease-out;
+        progressAnimation 1.3s ease;
+}
+
+
+@keyframes progressAnimation {
+
+    from {
+        width:
+            0;
+    }
 
 }
 
 
 .score-note {
 
-    font-size: 10px;
-
     color:
         #85899b;
 
-    margin-top: 8px;
+    font-size:
+        10px;
 
-    line-height: 1.5;
+    line-height:
+        1.5;
 
+    margin-top:
+        8px;
 }
 
 
-/* =========================================
+/* =========================
    EXPLANATION
-========================================= */
+========================= */
 
 .explanation {
 
     text-align:
         left;
+
+    padding:
+        19px;
+
+    margin-bottom:
+        20px;
+
+    border-radius:
+        14px;
 
     background:
 
@@ -1151,13 +1144,6 @@ nav {
     border-left:
         5px solid
         #f5b942;
-
-    border-radius: 14px;
-
-    padding: 18px;
-
-    margin-bottom: 18px;
-
 }
 
 
@@ -1166,74 +1152,86 @@ nav {
     color:
         #8a6500;
 
-    font-size: 15px;
+    font-size:
+        15px;
 
-    margin-bottom: 8px;
-
+    margin-bottom:
+        9px;
 }
 
 
 .explanation ul {
 
-    padding-left: 18px;
+    padding-left:
+        18px;
 
     color:
         #666;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
-    line-height: 1.7;
-
+    line-height:
+        1.7;
 }
 
 
 .explanation li {
 
-    margin-bottom: 4px;
-
+    margin-bottom:
+        4px;
 }
 
 
-/* =========================================
+/* =========================
    BUTTONS
-========================================= */
+========================= */
 
 .button-group {
 
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 11px;
-
+    gap:
+        12px;
 }
 
 
 .btn {
 
-    display: block;
+    display:
+        block;
 
     text-align:
         center;
 
-    padding: 13px;
+    padding:
+        14px;
 
-    border-radius: 13px;
+    border-radius:
+        13px;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    font-weight: 800;
+    font-weight:
+        bold;
 
     transition:
         0.3s;
-
 }
 
 
-.primary {
+.primary-btn {
+
+    color:
+        white;
 
     background:
 
@@ -1243,71 +1241,70 @@ nav {
             #764ba2
         );
 
-    color: white;
-
     box-shadow:
         0 7px 18px
         rgba(102,126,234,0.3);
-
 }
 
 
-.secondary {
+.secondary-btn {
+
+    color:
+        #5a35b5;
 
     background:
         #f0f2ff;
 
-    color:
-        #5738ae;
-
     border:
         1px solid
         #dfe2ff;
-
 }
 
 
 .btn:hover {
 
     transform:
-        translateY(-3px);
-
+        translateY(-4px);
 }
 
 
-/* =========================================
+/* =========================
    FOOTER
-========================================= */
+========================= */
 
 .footer {
 
     text-align:
         center;
 
-    margin-top: 28px;
+    margin-top:
+        30px;
 
-    padding-top: 19px;
+    padding-top:
+        20px;
 
     border-top:
         1px solid
         rgba(255,255,255,0.15);
 
     color:
-        rgba(255,255,255,0.62);
+        rgba(255,255,255,0.65);
 
-    font-size: 11px;
+    font-size:
+        12px;
 
-    line-height: 1.8;
-
+    line-height:
+        1.8;
 }
 
 
 .footer strong {
 
-    color: white;
+    color:
+        white;
 
-    font-size: 14px;
-
+    font-size:
+        15px;
 }
 
 
@@ -1318,17 +1315,16 @@ nav {
 
     text-decoration:
         none;
-
 }
 
 
-/* =========================================
+/* =========================
    RESPONSIVE
-========================================= */
+========================= */
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 
-    .layout {
+    .result-layout {
 
         grid-template-columns:
             1fr;
@@ -1343,19 +1339,20 @@ nav {
     body {
 
         padding:
-            23px 13px;
+            25px 15px;
 
         background-attachment:
             scroll;
+    }
+
+
+    .top-header h1 {
+
+        font-size:
+            30px;
 
     }
 
-    .nav-links {
-
-        display:
-            none;
-
-    }
 
     .developer {
 
@@ -1365,9 +1362,11 @@ nav {
         text-align:
             center;
 
-        gap: 10px;
+        gap:
+            12px;
 
     }
+
 
     .developer-name {
 
@@ -1376,17 +1375,36 @@ nav {
 
     }
 
-    .panel {
+
+    .input-panel,
+    .result-panel {
 
         padding:
-            21px;
+            22px;
 
     }
+
+
+    .property-image {
+
+        height:
+            310px;
+
+    }
+
 
     .button-group {
 
         grid-template-columns:
             1fr;
+
+    }
+
+
+    .prediction-value {
+
+        font-size:
+            37px;
 
     }
 
@@ -1400,47 +1418,19 @@ nav {
 <body>
 
 
-<div class="wrapper">
+<div class="main-wrapper">
 
 
-    <!-- NAVIGATION -->
+    <!-- HEADER -->
 
-    <nav>
-
-        <div class="logo">
-
-            🏠
-            <span>
-                AI House Predictor
-            </span>
-
-        </div>
+    <div class="top-header">
 
 
-        <div class="nav-links">
+        <div class="project-badge">
 
-            <a href="/">
-                Home
-            </a>
-
-            <a href="mailto:mekishan13@gmail.com">
-                Contact
-            </a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <header class="hero">
-
-        <div class="badge">
-
-            <span class="dot"></span>
-
-            🤖 AI & ML • PREDICTION COMPLETED
+            🤖 AI & ML PROJECT
+            •
+            PREDICTION COMPLETED
 
         </div>
 
@@ -1463,12 +1453,13 @@ nav {
 
         </p>
 
-    </header>
+    </div>
 
 
     <!-- DEVELOPER -->
 
-    <section class="developer">
+    <div class="developer">
+
 
         <div>
 
@@ -1507,17 +1498,18 @@ nav {
 
         </div>
 
-    </section>
+
+    </div>
 
 
-    <!-- MAIN -->
+    <!-- RESULT -->
 
-    <div class="layout">
+    <div class="result-layout">
 
 
-        <!-- INPUT PARAMETERS -->
+        <!-- INPUT PANEL -->
 
-        <section class="panel">
+        <div class="input-panel">
 
 
             <h2>
@@ -1527,7 +1519,7 @@ nav {
             </h2>
 
 
-            <p class="subtitle">
+            <p class="input-panel-subtitle">
 
                 Values provided to the trained
                 machine learning model.
@@ -1537,7 +1529,9 @@ nav {
 
             <div class="input-card">
 
+
                 <div class="input-top">
+
 
                     <strong>
 
@@ -1552,6 +1546,7 @@ nav {
 
                     </span>
 
+
                 </div>
 
 
@@ -1561,12 +1556,15 @@ nav {
 
                 </div>
 
+
             </div>
 
 
             <div class="input-card">
 
+
                 <div class="input-top">
+
 
                     <strong>
 
@@ -1581,6 +1579,7 @@ nav {
 
                     </span>
 
+
                 </div>
 
 
@@ -1590,12 +1589,15 @@ nav {
 
                 </div>
 
+
             </div>
 
 
             <div class="input-card">
 
+
                 <div class="input-top">
+
 
                     <strong>
 
@@ -1610,6 +1612,7 @@ nav {
 
                     </span>
 
+
                 </div>
 
 
@@ -1619,26 +1622,21 @@ nav {
 
                 </div>
 
-            </div>
-
-
-            <div class="visual">
-
-                <span>
-
-                    🏡 AI-powered property analysis
-
-                </span>
 
             </div>
 
 
-        </section>
+            <!-- LARGE IMAGE -->
+
+            <div class="property-image"></div>
 
 
-        <!-- RESULT -->
+        </div>
 
-        <section class="panel result-panel">
+
+        <!-- RESULT PANEL -->
+
+        <div class="result-panel">
 
 
             <div class="result-icon">
@@ -1709,6 +1707,7 @@ nav {
 
                     <div>
 
+
                         <div class="category-title">
 
                             Property Category
@@ -1725,6 +1724,7 @@ nav {
 
                         </div>
 
+
                     </div>
 
 
@@ -1737,6 +1737,7 @@ nav {
 
                     </div>
 
+
                 </div>
 
 
@@ -1745,10 +1746,10 @@ nav {
                     id="categoryDescription"
                 >
 
-                    Evaluating the predicted
-                    property value...
+                    Evaluating property value...
 
                 </div>
+
 
             </div>
 
@@ -1777,28 +1778,31 @@ nav {
 
                     </span>
 
+
                 </div>
 
 
                 <div class="progress">
 
+
                     <div
                         class="progress-bar"
                         id="scoreBar"
                         style="--score:0%"
-                    >
-                    </div>
+                    ></div>
+
 
                 </div>
 
 
                 <div class="score-note">
 
-                    This is a presentation indicator
-                    based on the supplied property inputs.
-                    It is not the actual model accuracy.
+                    Presentation score based on the
+                    supplied property characteristics.
+                    This is not the actual model accuracy.
 
                 </div>
+
 
             </div>
 
@@ -1860,13 +1864,14 @@ nav {
                             Prediction:
                         </strong>
 
-                        A machine learning estimate
+                        Machine learning estimate
                         and not a guaranteed market price.
 
                     </li>
 
 
                 </ul>
+
 
             </div>
 
@@ -1878,7 +1883,7 @@ nav {
 
                 <a
                     href="/"
-                    class="btn primary"
+                    class="btn primary-btn"
                 >
 
                     🔄 New Prediction
@@ -1888,17 +1893,18 @@ nav {
 
                 <a
                     href="mailto:mekishan13@gmail.com"
-                    class="btn secondary"
+                    class="btn secondary-btn"
                 >
 
                     📩 Contact Me
 
                 </a>
 
+
             </div>
 
 
-        </section>
+        </div>
 
 
     </div>
@@ -1906,7 +1912,7 @@ nav {
 
     <!-- FOOTER -->
 
-    <footer class="footer">
+    <div class="footer">
 
 
         <p>
@@ -1922,7 +1928,8 @@ nav {
 
         <p>
 
-            CSE — Artificial Intelligence & Machine Learning
+            CSE —
+            Artificial Intelligence & Machine Learning
 
         </p>
 
@@ -1958,7 +1965,7 @@ nav {
         </p>
 
 
-    </footer>
+    </div>
 
 
 </div>
@@ -1967,9 +1974,9 @@ nav {
 <script>
 
 
-/* =========================================
-   GET FLASK VALUES
-========================================= */
+/* =========================
+   FLASK VALUES
+========================= */
 
 const predictedAmount =
     Number("{{ prediction }}");
@@ -1987,51 +1994,32 @@ const lstat =
     Number("{{ lstat }}");
 
 
-/* =========================================
+/* =========================
    PROPERTY CATEGORY
-=========================================
-
-   Current thresholds:
-
-   >= 40  → Premium
-   >= 25  → Luxury
-   >= 15  → Standard
-   >= 8   → Affordable
-   <  8   → Budget
-
-   Change these values according
-   to your model/currency.
-========================================= */
+========================= */
 
 function getCategory(amount) {
 
 
-    if (!Number.isFinite(amount)) {
-
-        return {
-
-            name: "Unavailable",
-
-            emoji: "❓",
-
-            description:
-                "The predicted amount could not be analyzed."
-
-        };
-
-    }
+    /*
+       Change these thresholds
+       according to your model's
+       prediction scale.
+    */
 
 
     if (amount >= 40) {
 
         return {
 
-            name: "Premium",
+            name:
+                "Premium",
 
-            emoji: "💎",
+            emoji:
+                "💎",
 
             description:
-                "High-value property category with premium estimated value."
+                "High-value property with a premium estimated value."
 
         };
 
@@ -2042,12 +2030,14 @@ function getCategory(amount) {
 
         return {
 
-            name: "Luxury",
+            name:
+                "Luxury",
 
-            emoji: "🏆",
+            emoji:
+                "🏆",
 
             description:
-                "Upper-tier property category based on the estimated value."
+                "Upper-tier property based on the estimated value."
 
         };
 
@@ -2058,12 +2048,14 @@ function getCategory(amount) {
 
         return {
 
-            name: "Standard",
+            name:
+                "Standard",
 
-            emoji: "🏡",
+            emoji:
+                "🏡",
 
             description:
-                "Mid-range property category based on the estimated value."
+                "Mid-range property based on the estimated value."
 
         };
 
@@ -2074,12 +2066,14 @@ function getCategory(amount) {
 
         return {
 
-            name: "Affordable",
+            name:
+                "Affordable",
 
-            emoji: "🏠",
+            emoji:
+                "🏠",
 
             description:
-                "Affordable property category based on the estimated value."
+                "Affordable property based on the estimated value."
 
         };
 
@@ -2088,12 +2082,14 @@ function getCategory(amount) {
 
     return {
 
-        name: "Budget",
+        name:
+            "Budget",
 
-        emoji: "🏘️",
+        emoji:
+            "🏘️",
 
         description:
-            "Budget-friendly property category based on the estimated value."
+            "Budget-friendly property based on the estimated value."
 
     };
 
@@ -2122,32 +2118,18 @@ document
     category.description;
 
 
-/* =========================================
+/* =========================
    PREDICTION SCORE
-=========================================
-
-   IMPORTANT:
-
-   This is a UI score.
-
-   It is NOT the actual accuracy
-   of your machine learning model.
-
-   If your Flask backend has a real
-   score/confidence value, replace
-   this calculation with:
-
-       const score = Number("{{ score }}");
-
-========================================= */
-
+========================= */
 
 let score = 0;
 
 
-/* RM contribution */
+/* RM */
 
-if (Number.isFinite(rm)) {
+if (
+    Number.isFinite(rm)
+) {
 
     score +=
         Math.max(
@@ -2161,9 +2143,11 @@ if (Number.isFinite(rm)) {
 }
 
 
-/* PT contribution */
+/* PT */
 
-if (Number.isFinite(pt)) {
+if (
+    Number.isFinite(pt)
+) {
 
     score +=
         Math.max(
@@ -2175,9 +2159,11 @@ if (Number.isFinite(pt)) {
 }
 
 
-/* LSTAT contribution */
+/* LSTAT */
 
-if (Number.isFinite(lstat)) {
+if (
+    Number.isFinite(lstat)
+) {
 
     score +=
         Math.max(
@@ -2189,7 +2175,7 @@ if (Number.isFinite(lstat)) {
 }
 
 
-/* Keep score between 0 and 100 */
+/* Limit score */
 
 score =
     Math.round(
@@ -2203,7 +2189,7 @@ score =
     );
 
 
-/* Display score */
+/* Display */
 
 document
     .getElementById("scoreNumber")
@@ -2211,25 +2197,19 @@ document
     score + "%";
 
 
-/* Animate progress bar */
+/* Animate */
 
-setTimeout(
+setTimeout(() => {
 
-    () => {
+    document
+        .getElementById("scoreBar")
+        .style
+        .setProperty(
+            "--score",
+            score + "%"
+        );
 
-        document
-            .getElementById("scoreBar")
-            .style
-            .setProperty(
-                "--score",
-                score + "%"
-            );
-
-    },
-
-    100
-
-);
+},100);
 
 
 </script>
